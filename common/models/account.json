@@ -1,0 +1,43 @@
+{
+	"name": "account",
+	"plural": "Accounts",
+	"base": "PersistedModel",
+	"idInjection": false,
+	"options": {
+		"validateUpsert": true
+	},
+	"postgresql": {
+		"schema": "salesforce"
+	},
+	"properties": {
+		"pg_id__c": {
+			"type": "number",
+			"id": true
+		},
+		"createddate": {
+			"type": "string"
+		},
+		"name": {
+			"type": "string"
+		},
+		"systemmodstamp": {
+			"type": "string"
+		}
+	},
+	"validations": [],
+	"relations": {},
+	"acls": [ {
+		"accessType": "EXECUTE",
+		"principalType": "ROLE",
+		"principalId": "$unauthenticated",
+		"permission": "DENY",
+		"property": "getAccountMap"
+	}, {
+		"accessType": "EXECUTE",
+		"principalType": "ROLE",
+		"principalId": "admin",
+		"permission": "ALLOW",
+		"property": "getAccountMap"
+	} ],
+	"methods": {}
+}

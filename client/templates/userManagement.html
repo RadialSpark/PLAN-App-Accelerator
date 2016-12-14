@@ -1,0 +1,64 @@
+<div id="user-management">
+	<add-users *ngIf="endUsers" [endUsers]="endUsers" (onSave)="addNewUsers($event)"></add-users>
+	<div *ngIf="endUsers" class="card expandable-card" [class.active]="expanded" [class.animate]="hasBeenToggled">
+		<div class="error-message-container" *ngIf="errorMessage">
+			<div class="error-message">{{errorMessage}}</div>
+		</div>
+		<div class="header clickable" (click)="toggleExpanded()">
+			<div class="title">Current Users</div>
+		</div>
+		<div *ngIf="expanded && endUsers.length">
+			<input type="text" placeholder="Search" [(ngModel)]="searchText"/>
+			<table class="table-striped">
+				<thead>
+				<tr>
+					<th class="name">Name</th>
+					<th class="email">Email</th>
+					<th class="privilege">Admin</th>
+					<th class="actions"></th>
+					<th class="actions"></th>
+				</tr>
+				</thead>
+				<!-- style.font-style italicizes when users don't have roles as newly added and updated users will not have roles but users found on init will -->
+				<tr
+					*ngFor='let endUser of (endUsers | enduserSearch:searchText);'
+					[class.new-user]="!endUser.roles"
+					[class.edit-mode]="endUser.editing"
+					[class.logged-in-user]="endUser.id === securityService.getUserId()"
+				>
+					<td class="name">{{endUser.lastName}}, {{endUser.firstName}}</td>
+					<td class="email">{{endUser.email}}</td>
+					<!-- VIEW MODE CHECKBOXES START -->
+					<td class="privilege" *ngIf="!endUser.editing">
+						<input type="checkbox" [(ngModel)]="endUser.admin" disabled>
+					</td>
+					<!-- VIEW MODE CHECKBOXES STOP -->
+					<!-- EDIT MODE CHECKBOXES START -->
+					<td class="privilege" *ngIf="endUser.editing">
+						<input type="checkbox" [(ngModel)]="endUser.edits.admin" [disabled]="endUser.id === securityService.getUserId()">
+					</td>
+					<!-- EDIT MODE CHECKBOXES STOP -->
+					<td class="actions">
+						<button class="action-button" *ngIf="!endUser.editing" (click)="startEditing(endUser)">EDIT</button>
+						<button class="action-button" *ngIf="endUser.editing" (click)="saveUser(endUser)">SAVE</button>
+					</td>
+					<td class="actions">
+						<button class="action-button" *ngIf="!endUser.editing" (click)="confirmDeletion(endUser)" [disabled]="endUser.id === securityService.getUserId()">DELETE</button>
+						<button class="action-button" *ngIf="endUser.editing" (click)="endUser.editing = false;">CANCEL</button>
+					</td>
+				</tr>
+			</table>
+				<confirmation-modal *ngIf="showConfirmation"
+				[title]="'Deleting User'"
+				[body]="'You are about to delete ' + deletionStaging.user.email + '\'s user. They will no longer be able to sign in until a new account is created for them.\n\n'"
+				[confirm]="'Continue'"
+				[reject]="'Cancel'"
+				(onResponse)="handleConfirmation($event.confirmed)"
+			></confirmation-modal>
+		</div>
+		<div *ngIf="expanded && !endUsers.length">
+			You are currently the only user. You can add users above.
+		</div>
+	</div>
+</div>
+<preloader *ngIf="loading"></preloader>

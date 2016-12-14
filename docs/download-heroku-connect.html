@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>
+Automatic Download
+</title>
+<script>
+	var clicks = 0;
+	var secondsRemaining = 5;
+	function resetTimer() {
+		secondsRemaining = 5;
+	}
+</script>
+</head>
+<body>
+<a id="download-link" href="https://raw.githubusercontent.com/radialspark/plan-app-accelerator/master/heroku-connect-config.json" download style="display: none">heroku-connect-config.json</a>
+Your file should download automatically. If not click <a href="https://raw.githubusercontent.com/radialspark/plan-app-accelerator/master/heroku-connect-config.json" download onclick="resetTimer()">here</a>.
+<br />
+<br />
+<div id="back">
+You will be redirected back to page you linked from in <span id="countdown">5</span> seconds.
+<br />
+<br />
+<a href="javascript: window.history.back()">Back Now</button>
+</div>
+<script>
+	function countdown() {
+		secondsRemaining--;
+		if (secondsRemaining) {
+			document.getElementById('countdown').textContent = secondsRemaining;
+		} else {
+			window.history.back();
+		}
+		setTimeout(countdown, 1000);
+	}
+	while (clicks === 0) {
+		document.getElementById('download-link').click();
+		clicks++;
+	}
+	if (window.history.length === 1) {
+		document.getElementById('back').remove();
+	} else {
+		setTimeout(countdown, 1000);
+	}
+</script>
+</body>
+</html>

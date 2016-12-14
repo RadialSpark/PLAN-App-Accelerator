@@ -1,0 +1,5 @@
+<div id='event-message' [style.height]='height'>
+	<div class="message-box" *ngIf='message' [ngClass]='{error: isError(), message: isMessage(), success: isSuccess()}'>
+		{{message}}
+	</div>
+</div>

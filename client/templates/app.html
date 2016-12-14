@@ -1,0 +1,38 @@
+<div scrollSpy>
+	<div class="navigation-bar">
+		<div class="navigation-group left">
+			<span class="navigation-item navigation-title"><span>Sample Nav Bar</span></span>
+		</div>
+		<div class="navigation-group navigation-group-secondary right">
+			<a *ngIf="securityService.getTokenIsValid() && securityService.getUserIsAdmin() && securityService.getEndUser()"
+				[routerLink]="['users']"
+				[routerLinkActive]="['navigation-item-active']"
+				class="navigation-item">
+				<span>Manage Users</span>
+			</a>
+			<div *ngIf="securityService.getTokenIsValid() && securityService.getEndUser()"
+				class="navigation-dropdown navigation-item navigation-dropdown-toggle"
+				(click)="toggleDropdown()" (mouseleave)="userDropdown = false">
+				<span class="navigation-dropdown-toggle">
+					<img class="profile-img-sml" />
+				<span *ngIf="securityService.getEndUser()">{{getUsersFullName()}}</span>&nbsp;
+				<span class="caret"></span>
+				</span>
+				<div class="navigation-dropdown-items" id="navigation-dropdown-items" *ngIf="userDropdown">
+					<a (click)="securityService.logout()">Logout</a>
+				</div>
+			</div>
+			<a *ngIf="!securityService.getTokenIsValid()" [routerLink]="['login']" [routerLinkActive]="['navigation-item-active']" class="navigation-item"><span>Login</span></a>
+		</div>
+		<div *ngIf="securityService.getTokenIsValid() && securityService.getEndUser() && securityService.getEndUser().contact__r__pg_id__c" class="navigation-group right">
+			<!-- Application Links for Nav Bar go HERE -->
+		</div>
+	</div>
+</div>
+<!-- Routed views go here -->
+<router-outlet></router-outlet>
+<!-- <div id='footer-bar'>
+	<p>
+		This is a sample footer
+	</p>
+</div> -->

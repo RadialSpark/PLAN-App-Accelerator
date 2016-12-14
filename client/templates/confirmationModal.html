@@ -1,0 +1,10 @@
+<div id="confirmation-modal">
+	<div class="confirmation-alert">
+		<span class="confirmation-title">{{title}}</span>
+		<span class="confirmation-body">{{body}}</span>
+		<div class="confirmation-buttons">
+			<button class="reject" (click)="handleResponse(false);">{{reject}}</button>
+			<button class="confirm" (click)="handleResponse(true);">{{confirm}}</button>
+		</div>
+	</div>
+</div>

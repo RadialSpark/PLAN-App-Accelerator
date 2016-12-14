@@ -1,0 +1,268 @@
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="style/style.css" />
+
+<!-- Roboto Google font -->
+<link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+
+<title>PLAN App Accelerator</title>
+
+<script type="text/javascript">
+var menuOpen = false;
+function toggleNavMenu() {
+	document.getElementById("navMenu").style.display = (menuOpen ? "none" : "block");
+	if (!menuOpen) {
+		document.getElementById("menuToggle").className += "open";
+	} else {
+		document.getElementById("menuToggle").className = "";
+	}
+	menuOpen = !menuOpen;
+}
+</script>
+
+</head>
+<body>
+
+<div id="navbar">
+	<div id="navbar-elements">
+		<a href="index.html" id="navbar-logo"><img src="images/RS-SmallBug.png" /></a>
+		<div id="navbar-links">
+			<a href="architecture.html"><span>Architecture</span></a>
+			<a class="active"><span>Setup</span></a>
+			<a href="https://radialspark.com/contact/"><span>Contact Us</span></a>
+		</div>
+	</div>
+	<div id="navbar-compact">
+		<a href="index.html" id="navbar-logo"><img src="images/RS-SmallBug.png" /></a>
+		<span onclick="toggleNavMenu();" id="menuToggle">&#9776;</span>
+		<div class="dropdown" id="navMenu">
+			<div class="item"><a href="architecture.html">Architecture</a></div>
+			<div class="item"><a href="setup.html">Setup</a></div>
+			<div class="item"><a href="https://radialspark.com/contact/">Contact Us</a></div>
+		</div>
+	</div>
+</div>
+
+<div id="header">
+	<div id="title"><span>PLAN App Accelerator</span></div>
+	<div id="buttons">
+		<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t36000000k9Kw" target="_blank"><img src="images/dts_light.png" class="install-button" /></a>
+		<a href="https://heroku.com/deploy?template=https://github.com/radialspark/plan-app-accelerator" target="_blank"><img src="images/dth_light.png" class="install-button" /></a>
+		<a href="https://raw.githubusercontent.com/radialspark/plan-app-accelerator/master/heroku-connect-config.json" download><img src="images/hcc_light.png" class="install-button" /></a>
+	</div>
+</div>
+
+<div id="body">
+	<div class="block">
+		<span class="heading">Setup Instructions</span>
+
+		<div class="content">
+			<p class="subcontent">
+				<ol>
+					<li>Install the PLAN App Accelerator unmanaged package to your Salesforce org.<br /><a href="#salesforce">Step-by-step Salesforce instructions</a></li>
+					<li>Deploy a copy of the app to Heroku.<br /><a href="#heroku">Step-by-step Heroku instructions</a></li>
+					<li>Connect the Heroku Connect add-on to your Salesforce org, and import the configuraton json.<br /><a href="#heroku-connect">Step-by-step Heroku Connect instructions</a></li>
+					<li>Restart your Heroku App dynos.<br /><a href="#heroku-dyno-restart">Step-by-step Heroku Dyno Restart instructions</a></li>
+					<li>Finish setting up the app by <a href="#user-setup">giving yourself a user</a>.</li>
+				</ol>
+			</p>
+		</div>
+		<div class="top-link">
+			<a href="#header">Top &uarr;</a>
+		</div>
+
+		<hr />
+
+		<div class="content">
+			<div class="subheading" id="salesforce">Salesforce (Step-by-Step)</div>
+
+			<p class="subcontent">
+				<ol>
+					<li>If you do not have a Salesforce org to connect your PLAN app to, <a href="http://developer.salesforce.com/signup">create a free Developer Edition org</a>.</li>
+					<li>
+						Install the PLAN App Accelerator unmanaged package by clicking the link below. If you have multiple Salesforce orgs, make sure you pick the one you would like to connect to your PLAN app.
+						<br /><br />
+						<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t36000000k9Kw" target="_blank"><img src="images/dts_light.png" class="install-button" /></a>
+					</li>
+					<li>
+						Unless you have a reason otherwise, leave the default option (<i>Install for Admins Only</i>) selected when installing.
+					<li>
+						Navigate to the PLAN app that was just added to your org by clicking the dropdown in the top right corner of your Salesforce homepage.
+					<li>
+						If you do not have a contact for yourself in your Salesforce org:
+						<ol>
+							<li>Create an Account for your company or organization.
+								<br /><br />
+								<ol>
+									<li>Select the Accounts tab.</li>
+									<li>Add the Account from the Quick Add card on the left side of the page.</li>
+								</ol>
+							</li>
+							<li>
+								Create a Contact for yourself. This will be used in creating your PLAN app user later.
+								<br /><br />
+								<ol>
+									<li>Select the Contacts tab.</li>
+									<li>Add the Contact from the Quick Add card onthe left side of the page. Make sure you have access to the email you use here.</li>
+								</ol>
+							</li>
+						</ol>
+					</li>
+					<li class="numberless"><a href="#deploy">Go to Deploy step 2</a></li>
+				</ol>
+			</p>
+		</div>
+		<div class="top-link">
+			<a href="#header">Top &uarr;</a>
+		</div>
+
+		<hr />
+
+		<div class="content">
+			<div class="subheading" id="heroku">Heroku (Step-by-Step)</div>
+
+			<p class="subcontent">
+				<ol>
+					<li>
+						Deploy your own instance the PLAN App Accelerator on Heroku by clicking the button below.
+						<br /><br />
+						<a href="https://heroku.com/deploy?template=https://github.com/radialspark/plan-app-accelerator" target="_blank"><img src="images/dth_light.png" class="install-button" /></a>
+					</li>
+					<li>
+						Choose a unique name for your PLAN instance.
+					</li>
+					<li>
+						Set the ROOT_DOMAIN config variable to the domain for your PLAN instance. If you are not going to use a custom domain, this will be <i>http://<b>app-name</b>.herokuapp.com</i>.
+					</li>
+					<li>Set the NOREPLY_EMAIL config variable. The email provided here will be the email that users see as sending them the emails they recieve from your PLAN app.</li>
+					<li>Click the <i>Deploy for Free</i> button.</li>
+					<li>When deploy completes, click the <i>Manage App</i> button.</li>
+					<li class="numberless"><a href="#deploy">Go to Deploy step 3</a></li>
+				</ol>
+			</p>
+		</div>
+		<div class="top-link">
+			<a href="#header">Top &uarr;</a>
+		</div>
+
+		<hr />
+
+		<div class="content">
+			<div class="subheading" id="heroku-connect">Heroku Connect (Step-by-Step)</div>
+
+			<p class="subcontent">
+				<ol>
+					<li>
+						Click the <i>Heroku Connect</i> link in the <i>Installed add-ons</i> section of the app dashboard.
+					</li>
+					<li>
+						Click the <i>Setup Connection</i> button.
+					</li>
+					<li>
+						Select the <i>HEROKU_CONNECT_DB</i> Postgres database option by clicking anywhere on that row. Leave the schema name unchanged (it should be <i>salesforce</i>).
+					</li>
+					<li>Click the <i>Next</i> button in the top right of the page.</li>
+					<li>
+						If you are on a new Developer Edition org, leave the <i>Authorize Connection</i> options unchanged.
+					</li>
+					<li>Click the <i>Authorize</i> button in the top right of the page.</li>
+					<li>You will be prompted to <i>Choose a Username</i>. If you have multiple options, be sure to select the username associated with the Salesforce org your PLAN app instance should connect to.</li>
+					<li>You will be prompted to <i>Allow Access?</i>. Click the <i>Allow</i> button at the bottom right.</li>
+					<li>
+						This will take you back to the Heroku Connect Overview page. Click <i>Settings</i> in the navigation bar and choose <i>Import/Export Configuration</i>.
+					</li>
+					<li>Click the <i>Import</i> button.</li>
+					<li>
+						Download the Heroku Connect configuration file to your computer.
+						<br /><br />
+						<a href="https://raw.githubusercontent.com/radialspark/plan-app-accelerator/master/heroku-connect-config.json" download><img src="images/hcc_light.png" class="install-button" /></a>
+					</li>
+					<li>On the Heroku Connect page, click <i>Choose a File</i> and select the file you have downloaded (it should be named <i>heroku-connect-config.json</i>) and be located in your default download location.</li>
+					<li>Click the <i>Upload</i> button in the top right of the page.</li>
+					<li>
+						The connection between your PLAN database and Salesforce is now being set up. Keep an eye on the <i>Mappings</i> section. Wait until you have nine objects wth a status of <i>OK</i> before you continue. This may take a few minutes.
+					</li>
+					<li class="numberless"><a href="#deploy">Go to Deploy step 4</a></li>
+				</ol>
+			</p>
+		</div>
+		<div class="top-link">
+			<a href="#header">Top &uarr;</a>
+		</div>
+
+		<hr />
+
+		<div class="content">
+			<div class="subheading" id="heroku-dyno-restart">Heroku Dyno Restart (Step-by-Step)</div>
+
+			<p class="subcontent">
+				<ol>
+					<li>Go to your <a href="http://dashboard.heroku.com">Heroku Dashboard</a> and select your PLAN app.</li>
+					<li>Click the <i>More</i> dropdown in the top right of the page.</li>
+					<li>Select <i>Restart all dynos</i>.</li>
+					<li>You will be prompted that this may result in downtime. Click <i>Restart all dynos</i> again.</li>
+					<li class="numberless"><a href="#setup">Go to setup instructions</a></li>
+				</ol>
+			</p>
+		</div>
+		<div class="top-link">
+			<a href="#header">Top &uarr;</a>
+		</div>
+
+		<hr />
+
+		<div class="content">
+			<div class="subheading" id="user-setup">User Setup</div>
+
+			<p class="subcontent">
+				<ol>
+					<li>Click the <i>Open app</i> button in the top right of the Heroku app page.</li>
+					<li>
+						Login with the default user credentials.
+						<br /><br />
+						<b>Username:</b> admin
+						<br />
+						<b>Password:</b> password
+					</li>
+					<li>Find your name in the list of contacts.</li>
+					<li>Click the <i>ADD</i> button for your contact.</li>
+					<li>Select admin privileges for yourself in the New Users list.</li>
+					<li>Click the <i>SAVE</i> button in the bottom right.</li>
+					<li>Log out of the default user by clicking <i>DEFAULT ADMIN</i> in the navigation bar, then <i>LOGOUT</i>.</li>
+					<li>You should receieve an email to set your password. Follow the link in the email and reset your password.</li>
+					<li>Click the <i>MANAGE USERS</i> link in the navigation bar.</li>
+					<li>Delete the default admin account by clicking the <i>DELETE</i> button in the default admin row.</li>
+				</ol>
+			</p>
+		</div>
+		<div class="top-link">
+			<a href="#header">Top &uarr;</a>
+		</div>
+	</div>
+</div>
+
+<div id="footer">
+	<div id="info"><span>Copyright &copy; 2016 RadialSpark, All rights reserved.</span></div>
+</div>
+
+<script type="text/javascript">
+piAId = '133661';
+piCId = '8796';
+(function() {
+  function async_load(){
+    var s = document.createElement('script'); s.type = 'text/javascript';
+    s.src = ('https:' == document.location.protocol ? 'https://pi' : 'http://cdn') + '.pardot.com/pd.js';
+    var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+  }
+  if(window.attachEvent) { window.attachEvent('onload', async_load); }
+  else { window.addEventListener('load', async_load, false); }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+@roundCorners: 5px;
+@errorDark: #D8000C;
+@errorLight: #FFBABA;
+@messageDark: #00529B;
+@messageLight: #BDE5F8;
+@successDark: #4F8A10;
+@successLight: #DFF2BF;
+
+div {
+	margin: 2px 0px 2px;
+}
+
+.message-box {
+	display: inline-block;
+	border: 2px solid;
+	border-radius: @roundCorners;
+	-moz-border-radius: @roundCorners;
+	-webkit-border-radius: @roundCorners;
+}
+
+.error {
+	color: @errorDark;
+	background: @errorLight;
+}
+
+.message {
+	color: @messageDark;
+	background: @messageLight;
+}
+
+.success {
+	color: @successDark;
+	background: @successLight;
+}

@@ -1,0 +1,81 @@
+{
+	"name": "PLAN-app-accelerator",
+	"version": "0.0.1",
+	"engines": {
+		"node": "4.4.5"
+	},
+	"description": "A functional foundation for quickly developing applications on the PLAN stack.",
+	"author": "Justin Ludlow <jludlow@cloudsoftwarellc.com>",
+	"contributors": [ {
+		"name": "Michael Rockford",
+		"email": "mrockford@cloudsoftwarellc.com"
+	}, {
+		"name": "Brent Bowers",
+		"email": "bbowers@cloudsoftwarellc.com"
+	}, {
+		"name": "Josh Braaten",
+		"email": "jbraaten@cloudsoftwarellc.com"
+	}, {
+		"name": "Josh Riesenbach",
+		"email": "jriesenbach@cloudsoftwarellc.com"
+	}, {
+		"name": "Tom Wilkins",
+		"email": "twilkins@cloudsoftwarellc.com"
+	} ],
+	"main": "server/server.js",
+	"scripts": {
+		"postinstall": "npm run typings install && npm run gulp",
+		"tsc": "tsc",
+		"typings": "typings",
+		"gulp": "gulp"
+	},
+	"dependencies": {
+	  "@angular/common": "2.0.0-rc.4",
+    "@angular/compiler": "2.0.0-rc.4",
+    "@angular/core": "2.0.0-rc.4",
+    "@angular/forms": "0.2.x",
+    "@angular/http": "2.0.0-rc.4",
+    "@angular/platform-browser": "2.0.0-rc.4",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.4",
+    "@angular/router": "3.0.0-beta.2",
+    "body-parser": "1.15.x",
+    "bootstrap": "3.3.x",
+    "compression": "1.6.x",
+    "cookie-parser": "1.4.x",
+    "cors": "2.7.x",
+    "debug": "2.2.x",
+    "del": "2.2.x",
+    "es6-promise": "3.2.x",
+    "es6-shim": "0.35.x",
+    "gulp": "3.9.x",
+    "gulp-concat": "2.6.x",
+    "gulp-less": "3.1.x",
+    "gulp-typescript": "2.13.x",
+    "gulp-uglify": "1.5.x",
+    "hammerjs": "2.0.x",
+    "helmet": "2.1.x",
+    "immutable": "3.8.x",
+    "intl": "1.0.x",
+    "loopback": "2.29.x",
+    "loopback-boot": "2.19.x",
+    "loopback-component-explorer": "2.5.x",
+    "loopback-connector-postgresql": "2.6.x",
+    "loopback-datasource-juggler": "2.46.x",
+    "ng2-bootstrap": "1.0.x",
+    "ng2-scrollspy": "0.2.10",
+    "reflect-metadata": "0.1.x",
+    "run-sequence": "1.2.x",
+    "rxjs": "5.0.0-beta.6",
+    "scrollsnap-polyfill": "0.1.x",
+    "serve-favicon": "2.3.x",
+    "systemjs": "0.19.x",
+    "typings": "1.3.x",
+    "zone.js": "0.6.x"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Cloud-Software-LLC/plan-app-accelerator.git"
+	},
+	"license": "UNLICENSED",
+	"private": true
+}

@@ -1,0 +1,105 @@
+<div id="add-users" class="card expandable-card" [class.active]="expanded" [class.animate]="hasBeenToggled">
+	<div class="error-message-container" *ngIf="errorMessage">
+		<div class="error-message">{{errorMessage}}</div>
+	</div>
+	<div class="header clickable" (click)="toggleExpanded()">
+		<div class="title" >Add Users</div>
+	</div>
+	<div *ngIf="expanded">
+		<div class="divider row">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">Contacts</div>
+			<div class="col-sm-4">
+				<button class="action-button" (click)="moveAllToNewUsers()">Add All</button>
+			</div>
+		</div>
+		<input type="text" class="search" placeholder="Search" [(ngModel)]="searchText" (keyup)="generateContactsArray()"/>
+		<div class="accountFilter">
+			<typeahead
+				[placeholder]="'Filter by account...'"
+				[alwaysShowOptions]="true"
+				[options]="accountsArray"
+				[propertyToSearch]="'name'"
+				[width]="'100%'"
+				[showClearButton]="true"
+				[formatOption]="formatAccountOption"
+				(onSelect)="selectAccount($event)"
+			></typeahead>
+		</div>
+		<table class="scrollable-table-header">
+			<thead>
+				<tr>
+					<th class="name">Name</th>
+					<th class="email">Email</th>
+					<th class="account">Account</th>
+					<th class="actions"></th>
+				</tr>
+			</thead>
+		</table>
+		<div class="scrollable-table" *ngIf="contactsArray && accountsMap && contactsArray.length">
+			<table>
+				<tbody>
+					<tr *ngFor="let contact of contactsArray; let i = index;">
+						<td class="name">{{contact.lastname}}, {{contact.firstname}}</td>
+						<td class="email">{{contact.email}}</td>
+						<td class="account" *ngIf="accountsMap[contact.account__pg_id__c]">{{accountsMap[contact.account__pg_id__c].name}}</td>
+						<td class="account" *ngIf="!accountsMap[contact.account__pg_id__c]"><i>none</i></td>
+						<td class="actions">
+							<button class="action-button" (click)="moveToNewUsers(i)">Add</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div *ngIf="contactsArray && !contactsArray.length">
+			No contacts without user accounts to add.
+		</div>
+		<div *ngIf="newUsers && newUsers.length" style="margin-top: 15px">
+			<div class="divider row">
+				<div class="col-sm-4"></div>
+				<div class="col-sm-4">New Users</div>
+				<div class="col-sm-4">
+					<button class="action-button" (click)="resetNewUsers()">Remove All</button>
+				</div>
+			</div>
+			<table class="scrollable-table-header">
+				<thead>
+					<tr>
+						<th class="name">Name</th>
+						<th class="email">Email</th>
+						<th class="privilege" (click)="setPrivilege('admin');">Admin</th>
+						<th class="actions"></th>
+					</tr>
+				</thead>
+			</table>
+			<div class="scrollable-table">
+				<table>
+					<tbody>
+						<tr *ngFor="let user of newUsers; let i = index;">
+							<td class="name">{{user.lastName}}, {{user.firstName}}</td>
+							<td class="email">{{user.email}}</td>
+							<td class="privilege">
+								<input type="checkbox" [(ngModel)]="user.admin">
+							</td>
+							<td class="actions">
+								<button class="action-button" (click)="moveBackToContacts(i)">Remove</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+				<button class="action-button pull-left" (click)="handleCancel();">Cancel</button>
+				<button class="action-button pull-right" (click)="showConfirmation = true;">Save</button>
+				<confirmation-modal *ngIf="showConfirmation"
+					[title]="'Creating users'"
+					[body]="'You are about to create ' + newUsers.length + ' new user(s). Each user will recieve an email asking them to set up their account.\n\n'"
+					[confirm]="'Continue'"
+					[reject]="'Cancel'"
+					(onResponse)="handleConfirmation($event.confirmed)"
+				></confirmation-modal>
+			</div>
+		</div>
+	</div>
+</div>
+<preloader *ngIf="loading"></preloader>

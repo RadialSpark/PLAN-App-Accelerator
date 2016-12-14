@@ -1,0 +1,26 @@
+<div id="typeahead-component" [style.width]="width" [class.disabled]="disabled">
+	<input type="text"
+		[(ngModel)]="inputText"
+		(focus)="handleFocus();"
+		(blur)="handleBlur();"
+		(keyup)="handleKeyup($event);"
+		(keydown)="handleKeydown($event);"
+		[placeholder]="placeholder"
+		[style.width]="width"
+		[focus]="focusInput"
+		[disabled]="disabled" />
+	<div *ngIf="displayOptions && !disabled" class="typeahead-options" [style.max-height]="(optionListHeight + 2) + 'px'"> <!-- add 2 px to account for border -->
+		<span *ngIf="displayedOptions && displayedOptions.length">
+			<span (mousedown)="selectOption()"
+				(mouseenter)="handleMouseenter(i);"
+				(mouseleave)="handleMouseleave(i);"
+				*ngFor="let option of displayedOptions; let i = index"
+				class="typeahead-option"
+				[class.selected-option]="checkSelectedOption(i)">
+					{{formatOption(option)}}
+			</span>
+		</span>
+		<span *ngIf="!displayedOptions || !displayedOptions.length" class="typeahead-option disabled">{{noOptionsMessage}}</span>
+	</div>
+	<span class="clear-button" *ngIf="inputText && showClearButton && !disabled" (click)="clearInputField();">&times;</span>
+</div>

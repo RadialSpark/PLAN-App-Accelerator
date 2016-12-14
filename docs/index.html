@@ -1,0 +1,94 @@
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="style/style.css" />
+
+<!-- Roboto Google font -->
+<link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+
+<title>PLAN App Accelerator</title>
+
+<script type="text/javascript">
+var menuOpen = false;
+function toggleNavMenu() {
+	document.getElementById("navMenu").style.display = (menuOpen ? "none" : "block");
+	if (!menuOpen) {
+		document.getElementById("menuToggle").className += "open";
+	} else {
+		document.getElementById("menuToggle").className = "";
+	}
+	menuOpen = !menuOpen;
+}
+</script>
+
+</head>
+<body>
+
+<div id="navbar">
+	<div id="navbar-elements">
+		<a href="index.html" id="navbar-logo"><img src="images/RS-SmallBug.png" /></a>
+		<div id="navbar-links">
+			<a href="architecture.html"><span>Architecture</span></a>
+			<a href="setup.html"><span>Setup</span></a>
+			<a href="https://radialspark.com/contact/"><span>Contact Us</span></a>
+		</div>
+	</div>
+	<div id="navbar-compact">
+		<a href="index.html" id="navbar-logo"><img src="images/RS-SmallBug.png" /></a>
+		<span onclick="toggleNavMenu();" id="menuToggle">&#9776;</span>
+		<div class="dropdown" id="navMenu">
+			<div class="item"><a href="architecture.html">Architecture</a></div>
+			<div class="item"><a href="setup.html">Setup</a></div>
+			<div class="item"><a href="https://radialspark.com/contact/">Contact Us</a></div>
+		</div>
+	</div>
+</div>
+
+<div id="header">
+	<div id="title"><span>PLAN App Accelerator</span></div>
+	<div id="buttons">
+		<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t41000001XUp4" target="_blank"><img src="images/dts_light.png" class="install-button" /></a>
+		<a href="https://heroku.com/deploy?template=https://github.com/radialspark/plan-app-accelerator" target="_blank"><img src="images/dth_light.png" class="install-button" /></a>
+		<a href="https://raw.githubusercontent.com/radialspark/plan-app-accelerator/master/heroku-connect-config.json" download><img src="images/hcc_light.png" class="install-button" /></a>
+	</div>
+</div>
+
+<div id="body">
+	<div class="block">
+		<span class="heading">What is it?</span>
+		<div class="content">
+			<p>The PLAN App Accelerator is a bare-bones foundation for building Node.js applications on Heroku. It utilitizes Heroku Postgres, Heroku Connect, and Heroku SendGrid to support integrations with Salesforce and email functionality.</p>
+
+			<p>The concept for the App Accelerator began with the desire to support rapid custom application development on Heroku for enterprises already using Salesforce. Heroku, along with the Heroku Connect add-on, allows businesses to create an experience that exceeds the limits of Salesforce's multi-tenant infrastructure, while still leveraging all the great things that Salesforce provides, making it the perfect application platform for enterprise.</p>
+
+			<p>With this context in mind, the App Accelerator strives to give businesses a headstart with full-stack development. We wanted to support development entirely in JavaScript, so that the entire stack can be maintained by fewer developers on a single language and because JavaScript development resources are easier to find than Salesforce resources. We also wanted to support SQL database functionality that is often critical for enterprise-level solutions.</p>
+		</div>
+
+	</div>
+
+</div>
+
+<div id="footer">
+	<div id="info"><span>Copyright &copy; 2016 RadialSpark, All rights reserved.</span></div>
+</div>
+
+<script type="text/javascript">
+piAId = '133661';
+piCId = '8796';
+(function() {
+  function async_load(){
+    var s = document.createElement('script'); s.type = 'text/javascript';
+    s.src = ('https:' == document.location.protocol ? 'https://pi' : 'http://cdn') + '.pardot.com/pd.js';
+    var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+  }
+  if(window.attachEvent) { window.attachEvent('onload', async_load); }
+  else { window.addEventListener('load', async_load, false); }
+})();
+</script>
+
+</body>
+</html>

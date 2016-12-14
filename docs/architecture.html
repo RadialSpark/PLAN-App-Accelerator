@@ -1,0 +1,84 @@
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="style/style.css" />
+
+<!-- Roboto Google font -->
+<link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+
+<title>PLAN App Accelerator</title>
+
+<script type="text/javascript">
+var menuOpen = false;
+function toggleNavMenu() {
+	document.getElementById("navMenu").style.display = (menuOpen ? "none" : "block");
+	if (!menuOpen) {
+		document.getElementById("menuToggle").className += "open";
+	} else {
+		document.getElementById("menuToggle").className = "";
+	}
+	menuOpen = !menuOpen;
+}
+</script>
+
+</head>
+<body>
+
+<div id="navbar">
+	<div id="navbar-elements">
+		<a href="index.html" id="navbar-logo"><img src="images/RS-SmallBug.png" /></a>
+		<div id="navbar-links">
+			<a class="active"><span>Architecture</span></a>
+			<a href="setup.html"><span>Setup</span></a>
+			<a href="https://radialspark.com/contact/"><span>Contact Us</span></a>
+		</div>
+	</div>
+	<div id="navbar-compact">
+		<a href="index.html" id="navbar-logo"><img src="images/RS-SmallBug.png" /></a>
+		<span onclick="toggleNavMenu();" id="menuToggle">&#9776;</span>
+		<div class="dropdown" id="navMenu">
+			<div class="item"><a href="architecture.html">Architecture</a></div>
+			<div class="item"><a href="setup.html">Setup</a></div>
+			<div class="item"><a href="https://radialspark.com/contact/">Contact Us</a></div>
+		</div>
+	</div>
+</div>
+
+<div id="header">
+	<div id="title"><span>PLAN App Accelerator</span></div>
+	<div id="buttons">
+		<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t36000000k9Kw" target="_blank"><img src="images/dts_light.png" class="install-button" /></a>
+		<a href="https://heroku.com/deploy?template=https://github.com/radialspark/plan-app-accelerator" target="_blank"><img src="images/dth_light.png" class="install-button" /></a>
+		<a href="https://raw.githubusercontent.com/radialspark/plan-app-accelerator/master/heroku-connect-config.json" download><img src="images/hcc_light.png" class="install-button" /></a>
+	</div>
+</div>
+
+<div id="body">
+	<div class="block">
+		<span class="heading">Architecture</span>
+		<div class="content">
+			<p>
+				<img src="images/plan-stack-architecture.png" class="responsive" />
+			</p>
+
+			<p>The PLAN App Accelerator is built on an evolution of the MEAN stack that we are calling the PLAN stack; named after PostgreSQL, Loopback, Angular 2, and Node. The goal of the PLAN stack is to support environment-agnostic application development for desktop, mobile, and web. Loopback provides a self-documenting core REST API that ensures uniform functionality on any device, while Angular 2 provides a responsive UI that can be bootstrapped for any environment. The stack as a whole was built with the mantra "Javascript Back-to-Front."</p>
+
+			<p>While searching for the correct back-end Node framework, we stumbled across Loopback and immediately took to it. Out-of-the-box it provides: ORM-centered rapid REST API development, a self-documenting REST API explorer, support for a wide range of SQL and noSQL databases, support for external email services, and even the ability to integrate external REST/SOAP APIs through the ORM.</p>
+
+			<p>For our front-end, we wanted to find a framework that would be able to leverage Loopback's convenient API functionality on the widest variety of platforms. We landed on Angular 2 because of its flexible bootstrapping and the way that single-page applications interact with servers lends itself to the Loopback back-end. Through technologies like Cordova, Ionic, and Electron, it is possible to use the same Angular 2 code base in Android, iOS, and desktop applications that all leverage the same API as the core web application.</p>
+
+			<p>With Heroku as our target hosting platform for web applications, PostgreSQL was the preferred choice for SQL database out of the readily availabe add-ons, due to being supported Heroku Connect. SendGrid was similary chosen as our email service for requiring point-and-click setup to provision and integrate with Heroku. The reason that the App Accelerator leverages two databases is so that the Heroku Connect add-on can consume the schema of one of them, while the other can handle application administration data that should not take up space in Salesforce.</p>
+		</div>
+	</div>
+</div>
+
+<div id="footer">
+	<div id="info"><span>Copyright &copy; 2016 RadialSpark, All rights reserved.</span></div>
+</div>
+
+</body>
+</html>

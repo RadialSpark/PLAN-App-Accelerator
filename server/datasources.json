@@ -1,0 +1,19 @@
+{
+	"db": {
+		"name": "db",
+		"connector": "memory"
+	},
+	"pgDB": {
+		"name": "pgDB",
+		"connector": "loopback-connector-postgresql"
+	},
+	"herokuConnectDB": {
+		"name": "herokuConnectDB",
+		"connector": "loopback-connector-postgresql"
+	},
+	"sendGrid": {
+		"name": "sendGrid",
+		"defaultForType": "mail",
+		"connector": "mail"
+	}
+}

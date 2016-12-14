@@ -1,0 +1,87 @@
+{
+	"name": "EndUser",
+	"plural": "EndUsers",
+	"base": "User",
+	"idInjection": false,
+	"options": {
+		"validateUpsert": true
+	},
+	"properties": {
+		"firstName": {
+			"type": "string",
+			"required": true
+		},
+		"lastName": {
+			"type": "string",
+			"required": true
+		},
+		"contact__r__pg_id__c": {
+			"type": "number",
+			"required": false
+		}
+	},
+	"validations": [],
+	"relations": {
+		"roles": {
+			"type": "hasMany",
+			"model": "Role",
+			"foreignKey": "principalId",
+			"through": "RoleMapping"
+		},
+		"contact": {
+			"type": "belongsTo",
+			"model": "contact",
+			"foreignKey": "contact__r__pg_id__c"
+		}
+	},
+	"acls": [ {
+		"accessType": "EXECUTE",
+		"principalType": "ROLE",
+		"principalId": "admin",
+		"permission": "ALLOW",
+		"property": "find"
+	}, {
+		"accessType": "EXECUTE",
+		"principalType": "ROLE",
+		"principalId": "$everyone",
+		"permission": "ALLOW",
+		"property": "reset"
+	}, {
+		"accessType": "EXECUTE",
+		"principalType": "ROLE",
+		"principalId": "$owner",
+		"permission": "ALLOW",
+		"property": "updateAttributes"
+	}, {
+		"accessType": "EXECUTE",
+		"principalType": "ROLE",
+		"principalId": "admin",
+		"permission": "ALLOW",
+		"property": "updateAttributes"
+	}, {
+		"accessType": "EXECUTE",
+		"principalType": "ROLE",
+		"principalId": "$everyone",
+		"permission": "ALLOW",
+		"property": "validate"
+	}, {
+		"accessType": "EXECUTE",
+		"principalType": "ROLE",
+		"principalId": "admin",
+		"permission": "ALLOW",
+		"property": "deleteById"
+	}, {
+		"accessType": "EXECUTE",
+		"principalType": "ROLE",
+		"principalId": "admin",
+		"permission": "ALLOW",
+		"property": "updateEndUser"
+	}, {
+		"accessType": "EXECUTE",
+		"principalType": "ROLE",
+		"principalId": "admin",
+		"permission": "ALLOW",
+		"property": "createEndUsers"
+	} ],
+	"methods": {}
+}
